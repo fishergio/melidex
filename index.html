@@ -135,7 +135,7 @@
                     </h1>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" ng-submit="cmtsCtrl.addComment()">
                         <div class="form-group">
                             <div class="col-sm-6">
                             <textarea ng-model="cmtsCtrl.comment.body" placeholder="Please tell us what you think about {{pkmCtrl.pokemon.name}}"
@@ -153,13 +153,13 @@
                             </div>
                         </div>
                     </form>
-                    <blockquote>
+                    <blockquote ng-repeat="comment in cmtsCtrl.comments">
                         <p>{{cmtsCtrl.comment.body}}</p>
                         <footer>
                             Comment by
-                            <a ng-if="!cmtsCtrl.comment.anonymous" href="mailto:{{cmtsCtrl.comment.email}}">{{cmtsCtrl.comment.email}}</a>
-                            <em ng-if="cmtsCtrl.comment.anonymous">Anonymous</em>
-                            on <span>{{cmtsCtrl.comment.date | date}}</span>
+                            <a ng-if="!comment.anonymous" href="mailto:{{comment.email}}">{{comment.email}}</a>
+                            <em ng-if="comment.anonymous">Anonymous</em>
+                            on <span>{{comment.date | date}}</span>
                         </footer>
                     </blockquote>
                 </div>

@@ -46,6 +46,10 @@
             if(this.comment.anonymous){
                 this.comment.email = "";
             }
+        };
+
+        this.addComment = function(){
+            this.comments.push(this.comment);
         }
     });
 
