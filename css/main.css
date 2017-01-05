@@ -17,6 +17,12 @@ body {
 .form-group {
   padding: 10px;
 }
+.ng-invalid.ng-dirty {
+  border-color: #f00;
+}
+.ng-valid.ng-dirty {
+  border-color: #008000;
+}
 .type {
   margin-left: 1px;
 }
