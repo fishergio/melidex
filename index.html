@@ -135,14 +135,15 @@
                     </h1>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" ng-submit="cmtsCtrl.addComment()">
+                    <form name="commentsForm" class="form-horizontal" role="form" ng-submit="commentsForm.$valid && cmtsCtrl.addComment()" novalidate>
                         <div class="form-group">
                             <div class="col-sm-6">
                             <textarea ng-model="cmtsCtrl.comment.body" placeholder="Please tell us what you think about {{pkmCtrl.pokemon.name}}"
-                                      class="form-control"></textarea>
+                                      class="form-control" required></textarea>
                             </div>
                             <div class="col-sm-4">
-                                <input ng-model="cmtsCtrl.comment.email" ng-disabled="cmtsCtrl.comment.anonymous" type="email" placeholder="Please enter your email address" class="form-control">
+                                <input ng-model="cmtsCtrl.comment.email" ng-disabled="cmtsCtrl.comment.anonymous"
+                                       type="email" placeholder="Please enter your email address" class="form-control" ng-required="!cmtsCtrl.comment.anonymous">
                                 <label>
                                     <input ng-model="cmtsCtrl.comment.anonymous" ng-change="cmtsCtrl.anonymousChanged()" type="checkbox">
                                     Anonymous
@@ -153,13 +154,14 @@
                             </div>
                         </div>
                     </form>
+                    <div ng-if="!commentsForm.$valid" class="alert alert-danger">Formulario Invalido</div>
                     <blockquote ng-repeat="comment in cmtsCtrl.comments">
-                        <p>{{cmtsCtrl.comment.body}}</p>
+                        <p>{{comment.body}}</p>
                         <footer>
                             Comment by
                             <a ng-if="!comment.anonymous" href="mailto:{{comment.email}}">{{comment.email}}</a>
                             <em ng-if="comment.anonymous">Anonymous</em>
-                            on <span>{{comment.date | date}}</span>
+                            on <span>{{comment.date | date : 'medium'}}</span>
                         </footer>
                     </blockquote>
                 </div>
