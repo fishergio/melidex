@@ -29,6 +29,22 @@
         this.tab = 1;
         this.selectTab = function(tab){
             this.tab = tab;
+            console.log(tab);
+        }
+    });
+
+    app.controller('CommentsController', function () {
+        this.comments = [];
+        this.show = true;
+
+        this.toggle = function () {
+            this.show = !this.show;
+        }
+    });
+
+    app.filter('imageify', function () {
+        return function (input) {
+            var url = "img/pokemons/" + input.toLowerCase() + ".jpg";
         }
     })
 })();
