@@ -35,11 +35,11 @@
 
     app.controller('CommentsController', function () {
         this.comments = [];
-        this.show = true;
+        this.show = false;
 
         this.toggle = function () {
             this.show = !this.show;
-        }
+        };
     });
 
     app.filter('imageify', function () {
